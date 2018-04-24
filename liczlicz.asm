@@ -1,6 +1,8 @@
 ORG 1800h
 START:
 	LD SP,1900h
+	XOR	A
+	LD	C,A
 	JR enable
 
 ds 	0x1838-$,0
@@ -33,6 +35,7 @@ jedynki:
 	XOR	A
 	CP	H
 	JR	NZ, main
+	DI
 	LD	A,9
 	CP	B
 	JR	Z, reload
@@ -43,6 +46,7 @@ jedynki:
 	LD	A,B
 time:
 	OUT	(00h),A
+	EI
 	XOR	A
 	LD	C,A
 	LD	D,255
